@@ -259,138 +259,175 @@
    */
   new PureCounter();
 
-})()
-(function () {
-  "use strict";
+// })()
+// (function () {
+//   "use strict";
 
-  let forms = document.querySelectorAll('.php-email-form');
+//   let forms = document.querySelectorAll('.php-email-form');
 
-  forms.forEach(function (e) {
-    e.addEventListener('submit', function (event) {
+//   forms.forEach(function (e) {
+//     e.addEventListener('submit', function (event) {
+//       event.preventDefault();
+
+//       let thisForm = this;
+
+//       let action = thisForm.getAttribute('action');
+//       let recaptcha = thisForm.getAttribute('data-recaptcha-site-key');
+
+//       if (!action) {
+//         displayError(thisForm, 'The form action property is not set!');
+//         return;
+//       }
+
+//       let loadingElement = thisForm.querySelector('.loading');
+//       let errorMessageElement = thisForm.querySelector('.error-message');
+//       let sentMessageElement = thisForm.querySelector('.sent-message');
+
+//       loadingElement.classList.add('d-block');
+//       errorMessageElement.classList.remove('d-block');
+//       sentMessageElement.classList.remove('d-block');
+
+//       let formData = new FormData(thisForm);
+
+//       if (recaptcha) {
+//         if (typeof grecaptcha !== "undefined") {
+//           grecaptcha.ready(function () {
+//             try {
+//               grecaptcha
+//                 .execute(recaptcha, { action: 'php_email_form_submit' })
+//                 .then(token => {
+//                   formData.set('recaptcha-response', token);
+//                   php_email_form_submit(thisForm, action, formData);
+//                 });
+//             } catch (error) {
+//               displayError(thisForm, error);
+//             }
+//           });
+//         } else {
+//           displayError(thisForm, 'The reCaptcha javascript API url is not loaded!');
+//         }
+//       } else {
+//         php_email_form_submit(thisForm, action, formData);
+//       }
+//     });
+//   });
+
+//   function php_email_form_submit(thisForm, action, formData) {
+//     fetch(action, {
+//       method: 'POST',
+//       body: formData,
+//       headers: { 'X-Requested-With': 'XMLHttpRequest' }
+//     })
+//       .then(response => {
+//         if (response.ok) {
+//           return response.text();
+//         } else {
+//           throw new Error(`${response.status} ${response.statusText} ${response.url}`);
+//         }
+//       })
+//       .then(data => {
+//         let loadingElement = thisForm.querySelector('.loading');
+//         let sentMessageElement = thisForm.querySelector('.sent-message');
+
+//         loadingElement.classList.remove('d-block');
+//         if (data.trim() === 'OK') {
+//           sentMessageElement.classList.add('d-block');
+//           thisForm.reset();
+//         } else {
+//           throw new Error(data ? data : 'Form submission failed and no error message returned from: ' + action);
+//         }
+//       })
+//       .catch((error) => {
+//         displayError(thisForm, error);
+//       });
+//   }
+
+//   function displayError(thisForm, error) {
+//     let loadingElement = thisForm.querySelector('.loading');
+//     let errorMessageElement = thisForm.querySelector('.error-message');
+
+//     loadingElement.classList.remove('d-block');
+//     errorMessageElement.innerHTML = error;
+//     errorMessageElement.classList.add('d-block');
+//   }
+// })();
+
+// document.addEventListener("DOMContentLoaded", function() {
+//   const contactForm = document.getElementById("contact-form");
+  
+//   contactForm.addEventListener("submit", function(event) {
+//     event.preventDefault();
+    
+//     const name = document.getElementById("name").value;
+//     const email = document.getElementById("email").value;
+//     const subject = document.getElementById("subject").value;
+//     const message = document.getElementById("message").value;
+
+//     // Vous pouvez ajouter ici la logique pour envoyer les données du formulaire à votre serveur
+//     // Par exemple, utilisez fetch() pour effectuer une requête POST
+
+//     // Exemple de requête POST avec fetch (remplacez l'URL par la vôtre)
+//     fetch("https://myk-otaku.github.io.php", {
+//       method: "POST",
+//       body: JSON.stringify({ name, email, subject, message }),
+//       headers: {
+//         "Content-Type": "application/json",
+//       },
+//     })
+//       .then(response => response.json())
+//       .then(data => {
+//         if (data.success) {
+//           // Si l'envoi est réussi, affichez un message de confirmation
+//           const sentMessage = document.querySelector(".sent-message");
+//           sentMessage.textContent = "Votre message a été envoyé. Merci !";
+//           sentMessage.style.display = "block";
+//           contactForm.reset();
+//         } else {
+//           // En cas d'erreur, affichez un message d'erreur
+//           const errorMessage = document.querySelector(".error-message");
+//           errorMessage.textContent = "Une erreur s'est produite. Veuillez réessayer.";
+//           errorMessage.style.display = "block";
+//         }
+//       })
+//       .catch(error => {
+//         console.error("Erreur de traitement : ", error);
+//       });
+//   });
+// });
+document.addEventListener("DOMContentLoaded", function() {
+  const contactForm = document.querySelector(".php-email-form");
+  
+  if (contactForm) {
+    contactForm.addEventListener("submit", function(event) {
       event.preventDefault();
 
-      let thisForm = this;
+      const formData = new FormData(contactForm);
 
-      let action = thisForm.getAttribute('action');
-      let recaptcha = thisForm.getAttribute('data-recaptcha-site-key');
-
-      if (!action) {
-        displayError(thisForm, 'The form action property is not set!');
-        return;
-      }
-
-      let loadingElement = thisForm.querySelector('.loading');
-      let errorMessageElement = thisForm.querySelector('.error-message');
-      let sentMessageElement = thisForm.querySelector('.sent-message');
-
-      loadingElement.classList.add('d-block');
-      errorMessageElement.classList.remove('d-block');
-      sentMessageElement.classList.remove('d-block');
-
-      let formData = new FormData(thisForm);
-
-      if (recaptcha) {
-        if (typeof grecaptcha !== "undefined") {
-          grecaptcha.ready(function () {
-            try {
-              grecaptcha
-                .execute(recaptcha, { action: 'php_email_form_submit' })
-                .then(token => {
-                  formData.set('recaptcha-response', token);
-                  php_email_form_submit(thisForm, action, formData);
-                });
-            } catch (error) {
-              displayError(thisForm, error);
-            }
-          });
-        } else {
-          displayError(thisForm, 'The reCaptcha javascript API url is not loaded!');
-        }
-      } else {
-        php_email_form_submit(thisForm, action, formData);
-      }
+      fetch(contactForm.getAttribute("action"), {
+        method: "POST",
+        body: formData,
+        headers: {
+          "Accept": "application/json",
+        },
+      })
+        .then(response => response.json())
+        .then(data => {
+          if (data.success) {
+            const sentMessage = document.querySelector(".sent-message");
+            sentMessage.textContent = "Votre message a été envoyé. Merci !";
+            sentMessage.style.display = "block";
+            contactForm.reset();
+          } else {
+            const errorMessage = document.querySelector(".error-message");
+            errorMessage.textContent = "Une erreur s'est produite. Veuillez réessayer.";
+            errorMessage.style.display = "block";
+          }
+        })
+        .catch(error => {
+          console.error("Erreur de traitement : ", error);
+        });
     });
-  });
-
-  function php_email_form_submit(thisForm, action, formData) {
-    fetch(action, {
-      method: 'POST',
-      body: formData,
-      headers: { 'X-Requested-With': 'XMLHttpRequest' }
-    })
-      .then(response => {
-        if (response.ok) {
-          return response.text();
-        } else {
-          throw new Error(`${response.status} ${response.statusText} ${response.url}`);
-        }
-      })
-      .then(data => {
-        let loadingElement = thisForm.querySelector('.loading');
-        let sentMessageElement = thisForm.querySelector('.sent-message');
-
-        loadingElement.classList.remove('d-block');
-        if (data.trim() === 'OK') {
-          sentMessageElement.classList.add('d-block');
-          thisForm.reset();
-        } else {
-          throw new Error(data ? data : 'Form submission failed and no error message returned from: ' + action);
-        }
-      })
-      .catch((error) => {
-        displayError(thisForm, error);
-      });
   }
+})
+})
 
-  function displayError(thisForm, error) {
-    let loadingElement = thisForm.querySelector('.loading');
-    let errorMessageElement = thisForm.querySelector('.error-message');
-
-    loadingElement.classList.remove('d-block');
-    errorMessageElement.innerHTML = error;
-    errorMessageElement.classList.add('d-block');
-  }
-})();
-
-document.addEventListener("DOMContentLoaded", function() {
-  const contactForm = document.getElementById("contact-form");
-  
-  contactForm.addEventListener("submit", function(event) {
-    event.preventDefault();
-    
-    const name = document.getElementById("name").value;
-    const email = document.getElementById("email").value;
-    const subject = document.getElementById("subject").value;
-    const message = document.getElementById("message").value;
-
-    // Vous pouvez ajouter ici la logique pour envoyer les données du formulaire à votre serveur
-    // Par exemple, utilisez fetch() pour effectuer une requête POST
-
-    // Exemple de requête POST avec fetch (remplacez l'URL par la vôtre)
-    fetch("https://myk-otaku.github.io.php", {
-      method: "POST",
-      body: JSON.stringify({ name, email, subject, message }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then(response => response.json())
-      .then(data => {
-        if (data.success) {
-          // Si l'envoi est réussi, affichez un message de confirmation
-          const sentMessage = document.querySelector(".sent-message");
-          sentMessage.textContent = "Votre message a été envoyé. Merci !";
-          sentMessage.style.display = "block";
-          contactForm.reset();
-        } else {
-          // En cas d'erreur, affichez un message d'erreur
-          const errorMessage = document.querySelector(".error-message");
-          errorMessage.textContent = "Une erreur s'est produite. Veuillez réessayer.";
-          errorMessage.style.display = "block";
-        }
-      })
-      .catch(error => {
-        console.error("Erreur de traitement : ", error);
-      });
-  });
-});
