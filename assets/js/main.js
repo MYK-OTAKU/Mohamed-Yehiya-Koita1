@@ -367,7 +367,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // Par exemple, utilisez fetch() pour effectuer une requête POST
 
     // Exemple de requête POST avec fetch (remplacez l'URL par la vôtre)
-    fetch("votre_url_de_traitement.php", {
+    fetch("https://myk-otaku.github.io.php", {
       method: "POST",
       body: JSON.stringify({ name, email, subject, message }),
       headers: {

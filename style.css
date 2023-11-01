@@ -130,8 +130,23 @@ h6 {
   transition: 0.3s;
 }
 
-#header .profile .social-links a:hover {
-  background: #149ddd;
+#header .profile .social-links .linkedin1:hover {
+  background: #0a66c2;
+  color: #fff;
+  text-decoration: none;
+}
+#header .profile .social-links .instagram1:hover {
+  background: #e4405f;
+  color: #fff;
+  text-decoration: none;
+}
+#header .profile .social-links .facebook1:hover {
+  background: #1877f2;
+  color: #fff;
+  text-decoration: none;
+}
+#header .profile .social-links .twitter:hover {
+  background: #0f1419;
   color: #fff;
   text-decoration: none;
 }
@@ -1274,6 +1289,7 @@ section {
   color: #020305;
   background-color: #ffeba7;
 }
+
 .checkbox:checked + label:before {
   content: " \ea94";
   transform: translateX(44px) rotate(-270deg);
@@ -2114,4 +2130,38 @@ section {
   width: 54px;
   height: 54px;
   color: #007bff;
+}
+.rotation-container {
+  display: inline-block; /* Pour que la div englobe son contenu */
+  animation: rotate 4s linear infinite; /* Applique une rotation infinie de 360 degrés en 4 secondes */
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+/* Applique une animation de rotation continue à toutes les icônes */
+.rotate-icon {
+  animation: rotate 4s linear infinite; /* 4 secondes pour une rotation complète */
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Redimensionne la taille de l'icône, si nécessaire */
+.skill-icon i {
+  font-size: 3rem;
+}
+.bxl {
+  content: "\e61b";
 }
