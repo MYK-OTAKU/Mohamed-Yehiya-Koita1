@@ -50,7 +50,7 @@
         <h1 class="text-light"><a href="index.html">Mohamed Yehiya Koïta</a></h1>
         <div class="social-links mt-3 text-center">
           <a href="https://twitter.com/Mohamed_Yehiya1?t=aRQPdx9AH1tODLupPcXgUQ&s=08" class="twitter twitter1">
-            <!-- <i class="fa-brands fa-x-twitter"></i>  -->
+            <i class="fa-brands fa-x-twitter"></i> 
           </a>
           <a href="https://web.facebook.com/mohamedyehiya.koita.5" class="facebook facebook1"><i class="bx bxl-facebook"></i></a>
           <a href="https://www.instagram.com/mohamed_yehiya_koita/" class="instagram instagram1"><i class="bx bxl-instagram"></i></a>
@@ -555,6 +555,8 @@
     <!-- End testimonial item -->
 
             <!-- End Testimonials Section -->
+          <form action="php-email-form.php" method="post">
+
 
             <section id="contact" class="contact" >
               <div class="">
@@ -580,19 +582,19 @@
                                     <div class="section text-center">
                                       <h4 class="mb-3 pb-3">Me Contacter</h4>
                                       <div class="form-group">
-                                        <input type="text" name="nom" class="form-style" placeholder="Votre Nom complet">
+                                        <input type="text" id="name" name="nom" class="form-style" placeholder="Votre Nom complet">
                                         <i class="input-icon uil uil-user"></i>
                                       </div>
                                       <div class="form-group mt-2">
-                                        <input type="tel" name="numero" class="form-style" placeholder="Votre Numéro">
+                                        <input type="tel" id="numero" name="numero" class="form-style" placeholder="Votre Numéro">
                                         <i class="input-icon uil uil-phone"></i>
                                       </div>	
                                       <div class="form-group mt-2">
-                                        <input type="email" name="email" class="form-style" placeholder="Email">
+                                        <input type="email"id="email" name="email" class="form-style" placeholder="Email">
                                         <i class="input-icon uil uil-at"></i>
                                       </div>
                                       <div class="form-group mt-2">
-                                        <input type="text" name="message" class="form-style" placeholder="Message">
+                                        <input type="text" id="subject" name="message" class="form-style" placeholder="Message">
                                         <i class="input-icon uil uil-message"></i>
                                         
                                       </div>
@@ -640,6 +642,7 @@
               </section>
               </div>
             </section>
+          </form>
     <!-- End Contact Section -->
 
   </main><!-- End #main -->

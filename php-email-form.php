@@ -3,6 +3,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $to = "m2017koita@gmail.com"; // Remplacez par votre adresse e-mail
     $subject = "Nouveau message depuis le formulaire de contact";
     $name = $_POST["name"];
+    $numero = $_POST["numero"];
     $email = $_POST["email"];
     $message = $_POST["message"];
 
